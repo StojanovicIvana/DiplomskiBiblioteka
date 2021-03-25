@@ -1,0 +1,15 @@
+<app-header></app-header>
+
+<form (ngSubmit) = "newAuthorForm()">
+    <label>Ime:</label> 
+    <input type = text [(ngModel)] = "autor.ime" name="ime"><br><br>
+    <label>Prezime:</label> 
+    <input type = text [(ngModel)] = "autor.prezime" name="prezime"><br><br>
+    <label>Biografija:</label> 
+    <input type = text [(ngModel)] = "autor.biografija" name="biografija"><br><br>
+    <label>Personalni sajt: </label>
+    <input type = text [(ngModel)] = "autor.personalniSajt" name="personalniSajt"><br><br>
+    
+    <button type="submit"> Sacuvaj </button>
+
+</form>

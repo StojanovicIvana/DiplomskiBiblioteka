@@ -1,0 +1,30 @@
+.header {
+	text-align: left;
+	background: #000066;
+	color: #ffffff;
+	font-size: 150%;
+}
+
+h1 {
+	font-family: "Great Vibes", cursive;
+}
+
+button {	
+	font-size: 100%;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	color: #ffffff;
+	background-color: #000066;
+	border: 2px solid #ffffff;
+}
+
+button:hover {
+	font-size: 100%;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	color: #000066;
+	background-color: #ffffff;
+	border: 2px solid #ffffff;
+}

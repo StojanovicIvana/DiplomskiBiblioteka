@@ -1,0 +1,20 @@
+<app-header></app-header>
+
+<p>Izabrani format: {{ format.format }}</p>
+<p> Sada birate autora:</p>
+
+<input type="search" [(ngModel)]="searchText" placeholder="Search text">
+
+<table>
+    <thead>
+        <tr>Ime</tr>
+        <tr>Prezime</tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let autor of autors | filter: searchText">
+            <td> {{ autor.ime }}</td>
+            <td> {{ autor. prezime }} </td>
+            <td> <button [routerLink]="['new-book/' + autor.autorID]">Odaberi autora</button> </td>
+        </tr>
+    </tbody>
+</table>

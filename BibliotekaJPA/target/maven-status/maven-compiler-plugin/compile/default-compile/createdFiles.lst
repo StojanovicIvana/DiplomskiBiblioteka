@@ -1,0 +1,9 @@
+model\Format.class
+model\Autor.class
+model\Knjiga.class
+model\Pozajmica.class
+model\KnjigaKategorija.class
+model\Uloga.class
+model\Rezervacija.class
+model\Korisnik.class
+model\Kategorija.class

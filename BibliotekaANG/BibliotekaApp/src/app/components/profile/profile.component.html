@@ -1,0 +1,67 @@
+<app-header></app-header>
+
+{{ korisnik.ime }}
+{{ korisnik.prezime }}
+{{ korisnik.brClanskeKarte }}
+
+<button *ngIf="uloga == 'Clan'" (click) = "updateMember()">Izmeni podatke</button>
+
+<div *ngIf="displayUpdate">
+    <app-update-info></app-update-info>
+</div>
+
+<br><br>
+
+<input type="search" [(ngModel)]="searchText" placeholder="Search text">
+
+<br><br>
+
+<button *ngIf="uloga == 'Bibliotekar'" (click) = "lendBook()">Iznajmi knjigu</button>
+
+<div *ngIf="displayBooks">
+    <app-books-by-format></app-books-by-format>
+</div>
+
+<h2>Pozajmice</h2>
+<table>
+    <thead>
+        <tr>
+            <th> Datum preuzimanja </th>
+            <th> Datum vracanja </th>
+            <th> Knjiga </th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr *ngFor="let pozajmica of pozajmice | filter: searchText">
+            <td> {{ pozajmica.datumPreuzimanja }} </td>
+            <td> {{ pozajmica.datumVracanja }} </td>
+            <td> {{ pozajmica.knjiga.naslov }} </td>
+           
+    </tbody>
+</table>
+
+<h2>Rezervacije</h2>
+<table>
+    <thead>
+        <tr>
+            <th> Knjiga </th>
+            <th> Dostupno primeraka </th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr *ngFor="let rezervacija of rezervacije | filter: searchText">
+            <td> {{ rezervacija.knjiga.naslov }} </td>
+            <td> {{ rezervacija.knjiga.dostupno }} </td>
+            <td>
+                <button (click)="deleteReservation(rezervacija.rezervacijaID)"> Obrisi </button>
+            </td>
+    </tbody>
+</table>
+
+
+
+
+
+

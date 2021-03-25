@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<input type="search" [(ngModel)]="searchText" placeholder="Search text"> <br><br>
+
+<button routerLink="/new-librarian">Dodaj bibliotekara</button>
+
+<h2>Bibliotekari</h2>
+<table>
+    <thead>
+        <tr>
+            <th> Ime</th>
+            <th> Prezime </th>
+            <th> username</th>
+            <th> email </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let bibliotekar of bibliotekari | filter: searchText">
+            <td> {{ bibliotekar.ime }} </td>
+            <td> {{ bibliotekar.prezime }} </td>
+            <td> {{ bibliotekar.brClanskeKarte }} </td>
+            <td> {{ bibliotekar.email }} </td>
+            <td>
+                <button (click)="deleteLibrarian(bibliotekar.korisnikID)"> Obrisi </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,15 @@
+<app-header></app-header>
+
+<table>
+    <thead>
+        <th> Format </th>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let format of formats">
+            <td> {{ format.format }} </td>
+            <td> 
+                <button [routerLink]="['choose-author/' + format.formatID]"> Odaberi </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

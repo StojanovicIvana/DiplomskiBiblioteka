@@ -1,0 +1,10 @@
+<app-header></app-header>
+
+<form>
+    <label>Dodajte sliku knjige: </label>
+    <br><br>
+    <input type=file name="slika" (change)="fileSelected($event)"><br><br>
+    <button (click) = "savePicture()"> Sacuvaj sliku </button>
+    <br><br>
+    <!--<button (click) = "cancel()"> Kasnije </button>-->
+</form>

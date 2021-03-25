@@ -1,0 +1,20 @@
+<nav class="header">
+    <h1>Biblioteka</h1>
+    <button routerLink="/library">Sve knjige</button>
+
+    <button *ngIf="uloga == 'Admin'" routerLink="/admin">Upravljaj bibliotekarima</button>
+
+    <button *ngIf="uloga == 'Bibliotekar'" routerLink="/choose-format">Dodaj knjigu</button>
+    <button *ngIf="uloga == 'Bibliotekar'" routerLink="/new-author">Dodaj autora</button>        
+    <button *ngIf="uloga == 'Bibliotekar'" routerLink="/all-members">Clanovi</button>
+    <button *ngIf="uloga == 'Bibliotekar'" routerLink="/all-lends">Pozajmice</button>
+    
+    <button *ngIf="uloga == 'Clan'" (click) = "userInfo()">Moj profil</button>
+    
+    <button *ngIf="isLoggedIn == false" style="float:right" routerLink="/login">Log In</button>
+    <button *ngIf="isLoggedIn == true" style="float:right" (click) = "logout()">Log Out</button>
+    <br>
+
+
+</nav>
+

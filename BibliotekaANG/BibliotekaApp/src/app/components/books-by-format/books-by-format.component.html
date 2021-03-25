@@ -1,0 +1,19 @@
+<input type="search" [(ngModel)]="searchText" placeholder="Search text">
+
+<table>
+    <thead>
+        <tr>
+            <th> Naslov</th>
+            <th> Opis </th>
+            <th> Dostupno </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let knjiga of knjige | filter: searchText" >
+            <td> {{ knjiga.naslov }} </td>
+            <td> {{ knjiga.opis }} </td>
+            <td> {{ knjiga.dostupno }} </td>
+            <td> <button (click) = "iznajmi(knjiga.knjigaID)"> Iznajmi </button></td>
+        </tr>
+    </tbody>
+</table>

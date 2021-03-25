@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<h1>Pozajmice</h1>
+
+<input type="search" [(ngModel)]="searchText" placeholder="Search text">
+
+<table>
+    <thead>
+        <tr>
+            <th> Datum preuzimanja </th>
+            <th> Knjiga </th>
+            <th> Clan </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pozajmica of pozajmice | filter: searchText">
+            <td> {{ pozajmica.datumPreuzimanja }} </td>
+            <td> {{ pozajmica.knjiga.naslov }} </td>
+            <td> {{ pozajmica.korisnik.brClanskeKarte }} </td>
+            <td> <button (click)="odaberiDatum(pozajmica.pozajmicaID)">Datum vracanja</button> </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="displayDate" style="text-align:right" >
+    <app-choose-date></app-choose-date>
+</div>

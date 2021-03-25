@@ -1,0 +1,7 @@
+<app-header></app-header>
+
+<div *ngFor="let kategorija of sveKategorije">
+    <input type="checkbox" [(ngModel)]="kategorija.isChecked" (change)="changeSelection()">{{ kategorija.kategorija }}
+</div>
+<br><br>
+<button (click)="chooseCategory()"> Potvrda kategorija </button>

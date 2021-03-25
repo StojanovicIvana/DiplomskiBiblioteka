@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<p>Izabrani format: {{ format.format }}</p>
+<p>Izabrani autor: {{ autor.ime }} {{ autor.prezime }} </p>
+
+<form (ngSubmit)="onSubmit()">
+    <label>Naslov:</label>
+    <input type=text [(ngModel)]="knjiga.naslov" name="naslov"><br><br>
+    <label>Opis:</label>
+    <input type=text [(ngModel)]="knjiga.opis" name="opis"><br><br>
+
+    <div *ngIf="format.formatID == 1; else addFile">
+        <label>Broj primeraka:</label>
+        <input type=number [(ngModel)]="knjiga.brPrimeraka" name="brPrimeraka"><br><br>
+        <label>Dostupno: </label>
+        <input type=number [(ngModel)]="knjiga.dostupno" name="dostupno"><br><br>
+    </div>
+    <ng-template #addFile>
+        <label>Link do fajla:</label>
+        <input type=text [(ngModel)]="knjiga.fajl" name="fajl"><br><br>
+    </ng-template>
+
+    <button type="submit"> Sacuvaj knjigu </button>
+
+</form>

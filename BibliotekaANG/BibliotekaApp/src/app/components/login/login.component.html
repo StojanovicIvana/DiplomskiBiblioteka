@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<form (ngSubmit)="login()">
+    <div>
+        Broj clanske karte/username:
+        <input type="text" name="brClanskeKarte" [(ngModel)]="korisnik.brClanskeKarte">
+    </div>
+    <div>
+        Password:
+        <input type="password" name="password" [(ngModel)]="korisnik.password">
+    </div>
+    <button type="submit">Login</button>
+
+</form>
+
+<p>
+Uloga: Admin
+username: admin
+password: admin
+
+Uloga: Bibliotekar
+username: bibliotekar1
+password: 123456
+
+Uloga: Clan
+broj clanske karte: 123456
+password: 123456
+</p>

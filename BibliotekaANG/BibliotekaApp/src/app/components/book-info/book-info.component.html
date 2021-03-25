@@ -1,0 +1,38 @@
+<app-header></app-header>
+
+<h3> {{knjiga.naslov}} </h3>
+<div>
+    <div>
+        <p> {{knjiga.opis}} </p>
+    </div>
+    <img [src]="slika" width="200" height="300">
+    
+</div>
+<br><br>
+
+<div *ngIf="uloga == 'Clan'">
+    <div *ngIf="formatID == 1; else nijeStampana">
+        <div *ngIf="dostupno == 0; else dostupnaJe">
+            Knjiga trenutno nije dostupna.
+            Ukoliko zelite, mozete je rezervisati.
+            <button (click)="rezervisi()">Rezervisi</button>
+        </div>
+        <ng-template #dostupnaJe>
+            Knjiga je dostupna. Mozete je iznajmiti u biblioteci.            
+        </ng-template>
+    </div>
+    <ng-template #nijeStampana>
+        Knjigu mozete odmah pozajmiti. Fajl ce vam biti dostupan 30 dana.
+        <button (click)="iznajmi()"> Knjigu mozete citati ovde </button>
+    </ng-template>
+</div>
+<div *ngIf="displayLink">
+    <a [href]="fajl" target="_blank"> Pristupi fajlu </a>
+</div>
+
+
+
+
+
+
+

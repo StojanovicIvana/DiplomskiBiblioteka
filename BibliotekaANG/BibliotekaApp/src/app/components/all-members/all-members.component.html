@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<input type="search" [(ngModel)]="searchText" placeholder="Search text">
+
+<br><br>
+<button routerLink="/new-member">Dodaj novog clana</button>
+
+<h2>Clanovi</h2>
+<table>
+    <thead>
+        <tr>
+            <th> Ime</th>
+            <th> Prezime </th>
+            <th> Broj clanske karte</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let clan of clanovi | filter: searchText">
+            <td> {{ clan.ime }} </td>
+            <td> {{ clan.prezime }} </td>
+            <td> {{ clan.brClanskeKarte }} </td>
+            <td>
+                <button (click)="korisnikInfo(clan.korisnikID)"> Info </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,21 @@
+<form (ngSubmit)="updateInfo()">
+    <div>
+        <label> Ime: </label>
+        <input type="text" [(ngModel)] = "korisnik.ime" name = "ime">
+    </div>
+    <div>
+        <label> Prezime: </label>
+        <input type="text" [(ngModel)] = "korisnik.prezime" name = "prezime">
+    </div>
+    <div>
+        <label> e-mail: </label>
+        <input type="text" [(ngModel)] = "korisnik.email" name = "email">
+    </div>
+    <div>
+        <label> Password: </label>
+        <input type="password" [(ngModel)] = "korisnik.password" name = "password">
+    </div>
+    <button type="submit">Izmeni</button>
+
+</form>
+
