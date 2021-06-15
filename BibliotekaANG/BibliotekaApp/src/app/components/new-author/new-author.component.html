@@ -1,15 +1,28 @@
 <app-header></app-header>
 
-<form (ngSubmit) = "newAuthorForm()">
-    <label>Ime:</label> 
-    <input type = text [(ngModel)] = "autor.ime" name="ime"><br><br>
-    <label>Prezime:</label> 
-    <input type = text [(ngModel)] = "autor.prezime" name="prezime"><br><br>
-    <label>Biografija:</label> 
-    <input type = text [(ngModel)] = "autor.biografija" name="biografija"><br><br>
-    <label>Personalni sajt: </label>
-    <input type = text [(ngModel)] = "autor.personalniSajt" name="personalniSajt"><br><br>
-    
-    <button type="submit"> Sacuvaj </button>
+<body>
+    <br>
+    <div class="container">
+        <form (ngSubmit)="newAuthorForm()">
+            <div>
+                <label>Ime:</label> <br>
+                <input type=text [(ngModel)]="autor.ime" name="ime"><br><br>
+            </div>
+            <div>
+                <label>Prezime:</label> <br>
+                <input type=text [(ngModel)]="autor.prezime" name="prezime"><br><br>
+            </div>
+            <div>
+                <label>Biografija:</label> <br>
+                <input type=text [(ngModel)]="autor.biografija" name="biografija"><br><br>
+            </div>
+            <div>
+                <label>Personalni sajt: </label> <br>
+                <input type=text [(ngModel)]="autor.personalniSajt" name="personalniSajt"><br><br>
+            </div>
 
-</form>
+            <button type="submit" class="btn btn-info"> Sacuvaj </button>
+
+        </form>
+    </div>
+</body>

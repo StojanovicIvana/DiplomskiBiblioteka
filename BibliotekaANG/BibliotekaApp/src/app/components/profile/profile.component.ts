@@ -67,5 +67,4 @@ export class ProfileComponent implements OnInit {
   lendBook() {
     this.displayBooks = !this.displayBooks;
   }
-
 }

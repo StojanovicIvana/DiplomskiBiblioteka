@@ -1,17 +1,32 @@
 <app-header></app-header>
 
-<form (ngSubmit)="newMemberForm()">
-    <label>Ime:</label>
-    <input type=text [(ngModel)]="korisnik.ime" name="ime"><br><br>
-    <label>Prezime:</label>
-    <input type=text [(ngModel)]="korisnik.prezime" name="prezime"><br><br>
-    <label>Broj clanske karte: </label>
-    <input type=text [(ngModel)]="korisnik.brClanskeKarte" name="brClanskeKarte"><br><br>
-    <label>Password: </label>
-    <input type=password [(ngModel)]="korisnik.password" name="password"><br><br>
-    <label>E-mail</label>
-    <input type=text [(ngModel)]="korisnik.email" name="email"><br><br>
+<body>
+    <br>
+    <div class="container">
+        <form (ngSubmit)="newMemberForm()">
+            <div>
+                <label>Ime:</label> <br>
+                <input type=text [(ngModel)]="korisnik.ime" name="ime"><br><br>
+            </div>
+            <div>
+                <label>Prezime:</label> <br>
+                <input type=text [(ngModel)]="korisnik.prezime" name="prezime"><br><br>
+            </div>
+            <div>
+                <label>Broj clanske karte: </label> <br>
+                <input type=text [(ngModel)]="korisnik.brClanskeKarte" name="brClanskeKarte"><br><br>
+            </div>
+            <div>
+                <label>Password: </label> <br>
+                <input type=password [(ngModel)]="korisnik.password" name="password"><br><br>
+            </div>
+            <div>
+                <label>E-mail</label> <br>
+                <input type=text [(ngModel)]="korisnik.email" name="email"><br><br>
+            </div>
 
-    <button type="submit"> Sacuvaj </button>
+            <button type="submit" class="btn btn-info"> Sacuvaj </button>
 
-</form>
+        </form>
+    </div>
+</body>

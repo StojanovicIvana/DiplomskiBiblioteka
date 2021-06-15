@@ -30,19 +30,19 @@ import model.Rezervacija;
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/lendController")
 public class PozajmicaController {
-	
+
 	@Autowired
 	PozajmicaRepository pr;
-	
+
 	@Autowired
 	RezervacijaRepository rr;
-	
+
 	@Autowired
 	KorisnikRepository kor;
-	
+
 	@Autowired
 	KnjigaRepository kr;
-	
+
 	@GetMapping("/getAllLends")
 	public List<Pozajmica> vratiSvePozajmice() {
 		List<Pozajmica> pozajmice = pr.findAll();
@@ -55,7 +55,25 @@ public class PozajmicaController {
 		}
 		return neVraceneStampane;
 	}
-	
+
+	@GetMapping("/getSpecLend")
+	public Pozajmica vratiPozajmicuZaClana(@RequestParam("idClana") int idClana, @RequestParam("idKnjige") int idKnjige) {
+		Knjiga k = kr.findById(idKnjige).get();
+		Korisnik clan = kor.findById(idClana).get();
+		List<Pozajmica> pozajmice = new ArrayList<Pozajmica>();
+		if (k != null && clan != null) {
+			pozajmice = pr.findByKorisnikAndKnjiga(clan, k);
+		}
+		if (pozajmice != null) {
+			for (Pozajmica p : pozajmice) {
+				if (p.getDatumVracanja() == null || p.getDatumVracanja().compareTo(LocalDate.now().toString()) > 0) {
+					return p;
+				}
+			}
+		}
+		return null;
+	}
+
 	@PostMapping("/saveLend")
 	public Pozajmica sacuvajPozajmicu(@RequestParam("idClana") int idClana, @RequestBody int idKnjige) {
 		Pozajmica poz = new Pozajmica();
@@ -63,29 +81,38 @@ public class PozajmicaController {
 		poz.setKnjiga(k);
 		Korisnik clan = kor.findById(idClana).get();
 		poz.setKorisnik(clan);
-			
-		LocalDate ld =LocalDate.now();
-		String datum=ld.toString();
-		poz.setDatumPreuzimanja(datum);
-		
+
+		LocalDate ld = LocalDate.now();
+		String datumPreuzimanja = ld.toString();
+		poz.setDatumPreuzimanja(datumPreuzimanja);
+
+		if (k.getFormat().getFormatID() != 1) {
+			LocalDate dv = ld.plusDays(30);
+			String datumVracanja = dv.toString();
+			poz.setDatumVracanja(datumVracanja);
+		}
+
 		k.addPozajmica(poz);
-		k.setDostupno(k.getDostupno()-1);
 		clan.addPozajmica(poz);
 		
+		if (k.getFormat().getFormatID() == 1) {
+			k.setDostupno(k.getDostupno() - 1);
+		}	
+
 		return pr.save(poz);
 	}
-	
+
 	@PutMapping("/returnBook")
 	public Pozajmica vratiKnjiguUBiblioteku(@RequestParam("idPozajmice") int id, @RequestBody String datumV) {
 		Pozajmica p = pr.findById(id).get();
 		p.setDatumVracanja(datumV);
-		
+
 		Knjiga k = p.getKnjiga();
-		k.setDostupno(k.getDostupno()+1);	
-		
+		k.setDostupno(k.getDostupno() + 1);
+
 		return pr.save(p);
 	}
-	
+
 	@GetMapping("/getLendsForMember")
 	public List<Pozajmica> vratiKorisnikovePozajmice(@RequestParam("idClana") int idClana) {
 		List<Pozajmica> pozajmice = new ArrayList<Pozajmica>();
@@ -98,10 +125,10 @@ public class PozajmicaController {
 					p.setDatumVracanja("Nije vracena");
 				}
 			}
-		}		
+		}
 		return pozajmice;
 	}
-	
+
 	@PostMapping("/saveReservation")
 	public Rezervacija sacuvajRezervaciju(@RequestParam("idClana") int idClana, @RequestBody int idKnjige) {
 		Rezervacija rez = new Rezervacija();
@@ -109,27 +136,26 @@ public class PozajmicaController {
 		rez.setKnjiga(k);
 		Korisnik clan = kor.findById(idClana).get();
 		rez.setKorisnik(clan);
-		
+
 		k.addRezervacija(rez);
 		clan.addRezervacija(rez);
-		
+
 		return rr.save(rez);
 	}
-	
+
 	@GetMapping("/getReservationsForMember")
 	public List<Rezervacija> vratiKorisnikoveRezervacije(@RequestParam("idClana") int idClana) {
 		List<Rezervacija> rezervacije = new ArrayList<Rezervacija>();
 		Korisnik k = kor.findById(idClana).get();
 		if (k != null) {
 			rezervacije = rr.findByKorisnik(k);
-		}		
+		}
 		return rezervacije;
 	}
-	
+
 	@DeleteMapping("/deleteReservation/{id}")
 	public void obrisiRezervaciju(@PathVariable int id) {
 		rr.deleteById(id);
 	}
-	
 
 }

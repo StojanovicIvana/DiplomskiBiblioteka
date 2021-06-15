@@ -2,6 +2,7 @@ package biblioteka.contoller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
@@ -70,6 +71,19 @@ public class KnjigaController {
 		return kr.findByFormat(f);
 	}
 
+	@GetMapping("/getBooksByCategory")
+	public List<Knjiga> vratiKnjigePoKategoriji(@RequestParam("id") int id) {
+		List<Knjiga> knjigePoKategoriji = new ArrayList<Knjiga>();
+		Kategorija kat = katr.findById(id).get();
+		List<KnjigaKategorija> knjKat = kkr.findByKategorija(kat);
+
+		for (KnjigaKategorija kk : knjKat) {
+			knjigePoKategoriji.add(kk.getKnjiga());
+		}
+
+		return knjigePoKategoriji;
+	}
+
 	@PostMapping("/saveBook")
 	public Knjiga sacuvajKnjigu(@RequestBody Knjiga knjiga) {
 		return kr.save(knjiga);
@@ -89,21 +103,7 @@ public class KnjigaController {
 		return kr.save(knjiga);
 	}
 
-	/*@PutMapping("/addFile")
-	public Knjiga dodajFajl(@RequestParam("id") int id, @RequestParam("fajlKnjige") MultipartFile fajl) {
-		Knjiga knjiga = kr.findById(id).get();
-		if (fajl != null) {
-			try {
-				System.out.println("Original file byte size - " + fajl.getBytes().length);
-				knjiga.setFajl(compress(fajl.getBytes()));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return kr.save(knjiga);
-	}*/
-
-	public static byte[] compress(byte[] data) {
+	private static byte[] compress(byte[] data) {
 		Deflater def = new Deflater();
 		def.setInput(data);
 		def.finish();
@@ -116,14 +116,14 @@ public class KnjigaController {
 		try {
 			outputStream.close();
 		} catch (IOException e) {
-			System.out.println("Nesto je puklo");
+			System.out.println("Nesto nije u redu.");
 			e.printStackTrace();
 		}
 		System.out.println("Compressed:" + outputStream.toByteArray().length);
 		return outputStream.toByteArray();
 	}
 
-	public static byte[] decompress(byte[] data) {
+	private static byte[] decompress(byte[] data) {
 		Inflater inf = new Inflater();
 		inf.setInput(data);
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);

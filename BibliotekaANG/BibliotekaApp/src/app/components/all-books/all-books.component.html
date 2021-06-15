@@ -1,24 +1,46 @@
 <app-header></app-header>
 
-<h1>Knjige</h1>
+<body>
+    <h1> Knjige </h1>
 
-<input type="search" [(ngModel)]="searchText" placeholder="Search text">
+    <div class="container">
+        <input type="search" [(ngModel)]="searchText" placeholder="Pretrazite knjige">
+    </div>
+    <br>
 
-<table>
-    <thead>
-        <tr>
-            <th> Naslov</th>
-            <th> Opis </th>
-            <th> Format </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor = "let knjiga of knjige | filter: searchText" >
-            <td> {{ knjiga.naslov }} </td>
-            <td> {{ knjiga.opis }} </td>
-            <td> {{ knjiga.format.format }} </td>   
-            <td> <button (click) = "bookInfo(knjiga.knjigaID)"> Detalji </button></td>       
-        </tr>
-    </tbody>
-</table>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                Kategorije:
+                <div *ngFor="let kategorija of kategorije">
+                    <a routerLink="/library/{{kategorija.kategorijaID}}"> {{ kategorija.kategorija }} </a>
+                    <br>
+                </div>
+            </div>
+            <div class="col-10">
+                <div class="container">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th> Naslov</th>
+                                <th> Opis </th>
+                                <th> Format </th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let knjiga of knjige | filter: searchText">
+                                <td> {{ knjiga.naslov }} </td>
+                                <td> {{ knjiga.opis }} </td>
+                                <td> {{ knjiga.format.format }} </td>
+                                <td> <button (click)="bookInfo(knjiga.knjigaID)" class="btn btn-warning"> Detalji
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

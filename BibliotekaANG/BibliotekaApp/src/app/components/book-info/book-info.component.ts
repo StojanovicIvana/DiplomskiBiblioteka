@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SecurityContext } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Knjiga } from 'src/app/model/knjiga';
 import { LibraryService } from 'src/app/library.service';
@@ -9,18 +9,22 @@ import { LibraryService } from 'src/app/library.service';
   styleUrls: ['./book-info.component.css']
 })
 export class BookInfoComponent implements OnInit {
-  
+
   id: number;
   knjiga: Knjiga = new Knjiga();
+  korisnikID: number;
+  autor: any;
   formatID?: number;
   dostupno?: number;
   uloga?: any;
   slika?: any;
   fajl?: string;
+  iznajmljena?: boolean;
 
   constructor(private route: ActivatedRoute, private libraryService: LibraryService,
     private router: Router) {
     this.id = this.route.snapshot.params['id'];
+    this.korisnikID = Number(sessionStorage.getItem('korisnikID'));
   }
 
   ngOnInit(): void {
@@ -28,28 +32,39 @@ export class BookInfoComponent implements OnInit {
       this.knjiga = data;
       this.formatID = data.format?.formatID;
       this.dostupno = data.dostupno;
-      this.slika = 'data:image/jpeg;base64,' + data.slika;
+      if (data.slika != null) {
+        this.slika = 'data:image/jpeg;base64,' + data.slika;
+      } else {
+        this.slika = 'assets/noPhotoAvailable.png';
+      }
       this.fajl = data.fajl;
+      this.autor = this.knjiga.autor;
     });
     this.uloga = sessionStorage.getItem('uloga');
+    this.vecIznajmljena();
+  }
+
+  vecIznajmljena(): void {
+    this.libraryService.isItLent(this.id, this.korisnikID).subscribe(data => {
+      if (data !== null) {
+        console.log(data);
+        this.iznajmljena = true;
+      } else
+        this.iznajmljena = false;
+    });
   }
 
   rezervisi() {
-    const korisnikID = Number(sessionStorage.getItem('korisnikID'));
-    this.libraryService.newReservation(this.id, korisnikID).subscribe(data => {
+    this.libraryService.newReservation(this.id, this.korisnikID).subscribe(data => {
       console.log(data);
       this.router.navigate(['profile']);
     });
   }
 
-  displayLink = false;
   iznajmi() {
-    this.displayLink = true;
-    const korisnikID = Number(sessionStorage.getItem('korisnikID'));
-    this.libraryService.newLend(this.id, korisnikID).subscribe(data => {
+    this.libraryService.newLend(this.id, this.korisnikID).subscribe(data => {
       console.log(data);
-      //this.router.navigate(['profile']);
     });
+    this.iznajmljena = true;
   }
-
 }

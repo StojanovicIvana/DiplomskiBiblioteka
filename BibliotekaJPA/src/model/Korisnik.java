@@ -153,7 +153,5 @@ public class Korisnik implements Serializable {
 		return "Korisnik [korisnikID=" + korisnikID + ", brClanskeKarte=" + brClanskeKarte + ", email=" + email
 				+ ", ime=" + ime + ", password=" + password + ", prezime=" + prezime + "]";
 	}
-	
-	
 
 }

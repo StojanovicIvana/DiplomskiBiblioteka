@@ -1,19 +1,33 @@
-<input type="search" [(ngModel)]="searchText" placeholder="Search text">
-
-<table>
-    <thead>
-        <tr>
-            <th> Naslov</th>
-            <th> Opis </th>
-            <th> Dostupno </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor = "let knjiga of knjige | filter: searchText" >
-            <td> {{ knjiga.naslov }} </td>
-            <td> {{ knjiga.opis }} </td>
-            <td> {{ knjiga.dostupno }} </td>
-            <td> <button (click) = "iznajmi(knjiga.knjigaID)"> Iznajmi </button></td>
-        </tr>
-    </tbody>
-</table>
+<body>
+    <br><br>
+    <div class="container">
+        <input type="search" [(ngModel)]="searchText" placeholder="Pretraga">
+    </div>
+    <br><br>
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th> Naslov</th>
+                    <th> Opis </th>
+                    <th> Dostupno </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let knjiga of knjige | filter: searchText">
+                    <td> {{ knjiga.naslov }} </td>
+                    <td> {{ knjiga.opis }} </td>
+                    <td> {{ knjiga.dostupno }} </td>
+                    <td>
+                        <div *ngIf="knjiga.dostupno == 0; else dostupnaJe">
+                            <button (click)="rezervisi(knjiga.knjigaID)" class="btn btn-warning"> Rezervisi </button>
+                        </div>
+                        <ng-template #dostupnaJe>
+                            <button (click)="iznajmi(knjiga.knjigaID)" class="btn btn-warning"> Iznajmi </button>
+                        </ng-template>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>

@@ -12,10 +12,13 @@ import { Korisnik } from 'src/app/model/korisnik';
 export class LoginComponent implements OnInit {
 
   korisnik: Korisnik = new Korisnik();
+  invalidUser: boolean;
 
   constructor(private libraryService: LibraryService,
     private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService) {
+      this.invalidUser = false;
+     }
 
   ngOnInit() {
   }
@@ -24,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.libraryService.login(this.korisnik).subscribe(data => {
       console.log(data);
       if (data == null) {
-        this.router.navigate(['/login']);
+        this.invalidUser = true;
       } else {
         sessionStorage.setItem('korisnik', JSON.stringify(data));
         sessionStorage.setItem('uloga', data.uloga.imeUloge);
@@ -35,5 +38,4 @@ export class LoginComponent implements OnInit {
       }
     })
   }
-
 }

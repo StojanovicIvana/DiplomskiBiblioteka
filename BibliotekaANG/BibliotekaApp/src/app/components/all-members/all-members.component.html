@@ -1,27 +1,34 @@
 <app-header></app-header>
 
-<input type="search" [(ngModel)]="searchText" placeholder="Search text">
-
-<br><br>
-<button routerLink="/new-member">Dodaj novog clana</button>
-
-<h2>Clanovi</h2>
-<table>
-    <thead>
-        <tr>
-            <th> Ime</th>
-            <th> Prezime </th>
-            <th> Broj clanske karte</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let clan of clanovi | filter: searchText">
-            <td> {{ clan.ime }} </td>
-            <td> {{ clan.prezime }} </td>
-            <td> {{ clan.brClanskeKarte }} </td>
-            <td>
-                <button (click)="korisnikInfo(clan.korisnikID)"> Info </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<body>
+    <br><br>
+    <div class="container">
+        <input type="search" [(ngModel)]="searchText" placeholder="Pretraga">
+    </div>
+    <br><br>
+    <div class="container">
+        <button routerLink="/new-member" class="btn btn-info">Dodaj novog clana</button>
+    </div>
+    <div class="container">
+        <h2>Clanovi</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th> Ime</th>
+                    <th> Prezime </th>
+                    <th> Broj clanske karte</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let clan of clanovi | filter: searchText">
+                    <td> {{ clan.ime }} </td>
+                    <td> {{ clan.prezime }} </td>
+                    <td> {{ clan.brClanskeKarte }} </td>
+                    <td>
+                        <button (click)="korisnikInfo(clan.korisnikID)" class="btn btn-warning"> Info </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>

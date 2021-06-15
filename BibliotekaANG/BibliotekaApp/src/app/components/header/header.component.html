@@ -1,20 +1,21 @@
-<nav class="header">
-    <h1>Biblioteka</h1>
-    <button routerLink="/library">Sve knjige</button>
+<body style = "background-image: url('assets/header4.jpg');">
+    <nav>
+        <div class="container-fluid">
+            <h1 style="color: #f1e7da; text-align: left;">Biblioteka</h1>
+            <button *ngIf="isLoggedIn == false" style="float:right" routerLink="/login" class="btn btn-info">Log In</button>
+            <button *ngIf="isLoggedIn == true" style="float:right" (click)="logout()" class="btn btn-info">Log Out</button>
+            <ul class="nav navbar-nav">
+                <li> <button routerLink="/library" class="btn btn-info">Sve knjige</button> </li>
 
-    <button *ngIf="uloga == 'Admin'" routerLink="/admin">Upravljaj bibliotekarima</button>
+                <li> <button *ngIf="uloga == 'Admin'" routerLink="/admin" class="btn btn-info">Upravljaj <br> bibliotekarima</button> </li>
 
-    <button *ngIf="uloga == 'Bibliotekar'" routerLink="/choose-format">Dodaj knjigu</button>
-    <button *ngIf="uloga == 'Bibliotekar'" routerLink="/new-author">Dodaj autora</button>        
-    <button *ngIf="uloga == 'Bibliotekar'" routerLink="/all-members">Clanovi</button>
-    <button *ngIf="uloga == 'Bibliotekar'" routerLink="/all-lends">Pozajmice</button>
-    
-    <button *ngIf="uloga == 'Clan'" (click) = "userInfo()">Moj profil</button>
-    
-    <button *ngIf="isLoggedIn == false" style="float:right" routerLink="/login">Log In</button>
-    <button *ngIf="isLoggedIn == true" style="float:right" (click) = "logout()">Log Out</button>
-    <br>
+                <li> <button *ngIf="uloga == 'Bibliotekar'" routerLink="/choose-format" class="btn btn-info">Dodaj knjigu</button> </li>
+                <li> <button *ngIf="uloga == 'Bibliotekar'" routerLink="/new-author" class="btn btn-info">Dodaj autora</button> </li>
+                <li> <button *ngIf="uloga == 'Bibliotekar'" routerLink="/all-members" class="btn btn-info">Clanovi</button> </li>
+                <li> <button *ngIf="uloga == 'Bibliotekar'" routerLink="/all-lends" class="btn btn-info">Pozajmice</button> </li>
 
-
-</nav>
-
+                <li> <button *ngIf="uloga == 'Clan'" (click)="userInfo()" class="btn btn-info">Moj profil</button> </li>
+            </ul>
+        </div>
+    </nav>
+</body>

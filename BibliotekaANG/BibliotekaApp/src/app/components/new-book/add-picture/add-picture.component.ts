@@ -37,5 +37,4 @@ export class AddPictureComponent implements OnInit {
   public cancel() {
     this.router.navigate(['book-info', this.knjigaID]);
   }
-
 }

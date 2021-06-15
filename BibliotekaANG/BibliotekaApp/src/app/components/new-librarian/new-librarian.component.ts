@@ -18,9 +18,7 @@ export class NewLibrarianComponent implements OnInit {
   }
 
   newLibrarianForm() {
-    console.log(this.korisnik);
     this.libraryService.newLibrarian(this.korisnik).subscribe(data => {      
-      console.log(data);
       this.router.navigate(['/admin']);
     },
       error => {
@@ -28,7 +26,4 @@ export class NewLibrarianComponent implements OnInit {
       }
     )
   }
-
-
-
 }

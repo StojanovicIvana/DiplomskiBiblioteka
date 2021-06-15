@@ -74,20 +74,16 @@ public class KorisnikController {
 	public Korisnik izmeniPodatke(@RequestParam("id") int id, @RequestBody Korisnik korisnik) {
 		Korisnik kor = kr.findById(id).get();
 
-		if (korisnik.getIme() != null) {
+		if (korisnik.getIme() != null)
 			kor.setIme(korisnik.getIme());
-		}
-		if (korisnik.getPrezime() != null) {
+		if (korisnik.getPrezime() != null) 
 			kor.setPrezime(korisnik.getPrezime());
-		}
-		if (korisnik.getEmail() != null) {
-			kor.setEmail(korisnik.getPrezime());
-		}
+		if (korisnik.getEmail() != null)
+			kor.setEmail(korisnik.getEmail());
 		if (korisnik.getPassword() != null) {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			kor.setPassword(passwordEncoder.encode(korisnik.getPassword()));
 		}
-
 		return kr.save(kor);
 	}
 
@@ -112,7 +108,7 @@ public class KorisnikController {
 		Uloga u = ur.findById(1).get();
 		return kr.findByUloga(u);
 	}
-
+	
 	@DeleteMapping("/deleteLibrarian/{id}")
 	public void obrisiBibliotekara(@PathVariable int id) {
 		kr.deleteById(id);

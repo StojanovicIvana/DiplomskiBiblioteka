@@ -10,9 +10,8 @@ export class ChooseDateComponent implements OnInit {
 
   datumVracanja = '';
 
-  constructor(private libraryService:LibraryService) {
-    
-   }
+  constructor(private libraryService:LibraryService) {   
+  }
 
   ngOnInit(): void {
   }
@@ -26,5 +25,4 @@ export class ChooseDateComponent implements OnInit {
       window.location.reload();
     });
   }
-
 }

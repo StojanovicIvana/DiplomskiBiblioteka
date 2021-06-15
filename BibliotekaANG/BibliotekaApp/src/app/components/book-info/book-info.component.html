@@ -1,38 +1,44 @@
 <app-header></app-header>
 
-<h3> {{knjiga.naslov}} </h3>
-<div>
-    <div>
-        <p> {{knjiga.opis}} </p>
-    </div>
-    <img [src]="slika" width="200" height="300">
-    
-</div>
-<br><br>
-
-<div *ngIf="uloga == 'Clan'">
-    <div *ngIf="formatID == 1; else nijeStampana">
-        <div *ngIf="dostupno == 0; else dostupnaJe">
-            Knjiga trenutno nije dostupna.
-            Ukoliko zelite, mozete je rezervisati.
-            <button (click)="rezervisi()">Rezervisi</button>
+<body>
+    <h1> {{ knjiga.naslov }} </h1>
+    <br>
+    <h2> {{ autor.ime }} {{ autor.prezime }} </h2>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <img [src]="slika" width="250" height="350">
+            </div>
+            <div class="col-4">
+                <p> {{knjiga.opis}} </p>
+            </div>
+            <div class="col-4">
+                <div *ngIf="uloga == 'Clan'" style="text-align: center;">
+                    <div *ngIf="formatID == 1; else nijeStampana">
+                        <div *ngIf="dostupno == 0; else dostupnaJe">
+                            Knjiga trenutno nije dostupna.
+                            Ukoliko zelite, mozete je rezervisati kako bi pratili njenu dostupnost. <br>
+                            <button (click)="rezervisi()" class="btn btn-info">Rezervisi</button>
+                        </div>
+                        <ng-template #dostupnaJe>
+                            Knjiga je dostupna. Mozete je iznajmiti u biblioteci.
+                        </ng-template>
+                    </div>
+                    <ng-template #nijeStampana>
+                        <div *ngIf="iznajmljena; else nijeIznajmljena">
+                            Knjiga je iznajmljena.
+                            <br>
+                            <a [href]="fajl" target="_blank" class="btn btn-info"> Pristupi fajlu </a>
+                        </div>
+                        <ng-template #nijeIznajmljena>
+                            Knjigu mozete odmah pozajmiti. Fajl ce vam biti dostupan 30 dana.
+                            <br>
+                            <button (click)="iznajmi()" class="btn btn-info"> Knjigu mozete citati ovde </button>
+                        </ng-template>
+                    </ng-template>
+                </div>
+            </div>
         </div>
-        <ng-template #dostupnaJe>
-            Knjiga je dostupna. Mozete je iznajmiti u biblioteci.            
-        </ng-template>
     </div>
-    <ng-template #nijeStampana>
-        Knjigu mozete odmah pozajmiti. Fajl ce vam biti dostupan 30 dana.
-        <button (click)="iznajmi()"> Knjigu mozete citati ovde </button>
-    </ng-template>
-</div>
-<div *ngIf="displayLink">
-    <a [href]="fajl" target="_blank"> Pristupi fajlu </a>
-</div>
-
-
-
-
-
-
-
+</body>

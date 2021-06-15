@@ -35,5 +35,4 @@ export class HeaderComponent implements OnInit {
   userInfo() {
     this.router.navigate(['profile']);
   }
-
 }

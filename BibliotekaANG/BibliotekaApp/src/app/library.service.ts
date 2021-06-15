@@ -26,6 +26,10 @@ export class LibraryService {
     return this.httpClient.get<Knjiga>(`${this.baseURL}bookController/getBook?id=${id}`);
   }
 
+  getBooksByCategory(id: number): Observable<Knjiga[]> {
+    return this.httpClient.get<Knjiga[]>(`${this.baseURL}bookController/getBooksByCategory?id=${id}`);
+  }
+
   newBook(knjiga: Knjiga): Observable<Object> {
     return this.httpClient.post(`${this.baseURL}bookController/saveBook`, knjiga);
   }
@@ -130,6 +134,10 @@ export class LibraryService {
 
   deleteReservation(id: number): Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}lendController/deleteReservation/${id}`);
+  }
+
+  isItLent(idKnjige: number, idClana: number): Observable<Pozajmica> {
+    return this.httpClient.get(`${this.baseURL}lendController/getSpecLend?idKnjige=${idKnjige}&idClana=${idClana}`);
   }
 
 }

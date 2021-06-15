@@ -17,10 +17,12 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AllLendsComponent } from './components/all-lends/all-lends.component';
 import { UpdateInfoComponent } from './components/update-info/update-info.component';
+import { BooksByCategoryComponent } from './components/books-by-category/books-by-category.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'library', pathMatch: 'full'},
   {path: 'library', component: AllBooksComponent},
+  {path: 'library/:id', component: BooksByCategoryComponent},
   {path: 'book-info/:id', component: BookInfoComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin', component: AdminComponent, canActivate: [RoleGuard], data: {expectedRole: 'Admin'}},

@@ -31,5 +31,4 @@ export class AdminComponent implements OnInit {
       this.getLibrarians();
     });
   }
-
 }

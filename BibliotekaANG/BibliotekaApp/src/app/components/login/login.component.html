@@ -1,28 +1,36 @@
 <app-header></app-header>
 
-<form (ngSubmit)="login()">
-    <div>
-        Broj clanske karte/username:
-        <input type="text" name="brClanskeKarte" [(ngModel)]="korisnik.brClanskeKarte">
+<body>
+    <div class="row justify-content-center">
+        <form (ngSubmit)="login()">
+            <div>
+                <label> Broj clanske karte/username: </label> <br>
+                <input type="text" name="brClanskeKarte" [(ngModel)]="korisnik.brClanskeKarte">
+            </div>
+            <div>
+                <label> Password:</label> <br>
+                <input type="password" name="password" [(ngModel)]="korisnik.password">
+            </div><br>
+            <div *ngIf=invalidUser>
+                <label> Ovaj korisnik ne postoji! </label>
+            </div>
+            <button type="submit" class="btn btn-info">Login</button>
+        </form>
     </div>
-    <div>
-        Password:
-        <input type="password" name="password" [(ngModel)]="korisnik.password">
-    </div>
-    <button type="submit">Login</button>
+</body>
 
-</form>
 
+<br>
 <p>
-Uloga: Admin
-username: admin
-password: admin
-
-Uloga: Bibliotekar
-username: bibliotekar1
-password: 123456
-
-Uloga: Clan
-broj clanske karte: 123456
-password: 123456
+    Uloga: Admin
+    username: admin
+    password: admin
+<br>
+    Uloga: Bibliotekar
+    username: bibliotekar1
+    password: 123456
+<br>
+    Uloga: Clan
+    broj clanske karte: 123456
+    password: 123456
 </p>

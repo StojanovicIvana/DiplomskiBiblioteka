@@ -42,5 +42,4 @@ export class NewBookComponent implements OnInit {
       this.router.navigate(['choose-category', this.knjiga.knjigaID]);           
     })
   }
-
 }

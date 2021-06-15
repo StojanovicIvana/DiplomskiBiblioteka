@@ -1,7 +1,17 @@
 <app-header></app-header>
 
-<div *ngFor="let kategorija of sveKategorije">
-    <input type="checkbox" [(ngModel)]="kategorija.isChecked" (change)="changeSelection()">{{ kategorija.kategorija }}
-</div>
-<br><br>
-<button (click)="chooseCategory()"> Potvrda kategorija </button>
+<body>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h4 style="text-align: left;"> Odaberite kategorije:</h4>
+                <div *ngFor="let kategorija of sveKategorije">
+                    <input type="checkbox" [(ngModel)]="kategorija.isChecked" (change)="changeSelection()"> {{
+                    kategorija.kategorija }}
+                </div>
+                <button (click)="chooseCategory()" class="btn btn-info"> Potvrda kategorija </button>
+            </div>
+        </div>
+    </div>
+</body>

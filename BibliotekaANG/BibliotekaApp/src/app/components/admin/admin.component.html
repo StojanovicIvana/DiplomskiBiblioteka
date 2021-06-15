@@ -1,28 +1,37 @@
 <app-header></app-header>
 
-<input type="search" [(ngModel)]="searchText" placeholder="Search text"> <br><br>
+<body>
+    <div class="container">
+        <br>
+        <input type="search" [(ngModel)]="searchText" placeholder="Pretraga"> <br><br>
+    </div>
 
-<button routerLink="/new-librarian">Dodaj bibliotekara</button>
+    <div class="container">
+        <button routerLink="/new-librarian" class="btn btn-info">Dodaj bibliotekara</button>
+    </div>
 
-<h2>Bibliotekari</h2>
-<table>
-    <thead>
-        <tr>
-            <th> Ime</th>
-            <th> Prezime </th>
-            <th> username</th>
-            <th> email </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let bibliotekar of bibliotekari | filter: searchText">
-            <td> {{ bibliotekar.ime }} </td>
-            <td> {{ bibliotekar.prezime }} </td>
-            <td> {{ bibliotekar.brClanskeKarte }} </td>
-            <td> {{ bibliotekar.email }} </td>
-            <td>
-                <button (click)="deleteLibrarian(bibliotekar.korisnikID)"> Obrisi </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <div class="container">
+        <h2>Bibliotekari</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th> Ime</th>
+                    <th> Prezime </th>
+                    <th> username</th>
+                    <th> email </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bibliotekar of bibliotekari | filter: searchText">
+                    <td> {{ bibliotekar.ime }} </td>
+                    <td> {{ bibliotekar.prezime }} </td>
+                    <td> {{ bibliotekar.brClanskeKarte }} </td>
+                    <td> {{ bibliotekar.email }} </td>
+                    <td>
+                        <button (click)="deleteLibrarian(bibliotekar.korisnikID)" class="btn btn-warning"> Obrisi </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>

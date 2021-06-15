@@ -17,5 +17,4 @@ export class ChooseFormatComponent implements OnInit {
       this.formats = formats;
     })
   }
-
 }

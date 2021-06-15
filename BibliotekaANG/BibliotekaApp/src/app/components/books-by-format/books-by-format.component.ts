@@ -33,9 +33,15 @@ export class BooksByFormatComponent implements OnInit {
     });
   }
 
-
   iznajmi(idKnjige: number) {
     this.libraryService.newLend(idKnjige, this.idClana).subscribe(data => {
+      console.log(data);
+      this.router.navigate(['all-lends']);
+    });
+  }
+
+  rezervisi(idKnjige: number) {
+    this.libraryService.newReservation(idKnjige, this.idClana).subscribe(data => {
       console.log(data);
       this.router.navigate(['all-lends']);
     });

@@ -1,20 +1,33 @@
 <app-header></app-header>
 
-<p>Izabrani format: {{ format.format }}</p>
-<p> Sada birate autora:</p>
-
-<input type="search" [(ngModel)]="searchText" placeholder="Search text">
-
-<table>
-    <thead>
-        <tr>Ime</tr>
-        <tr>Prezime</tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let autor of autors | filter: searchText">
-            <td> {{ autor.ime }}</td>
-            <td> {{ autor. prezime }} </td>
-            <td> <button [routerLink]="['new-book/' + autor.autorID]">Odaberi autora</button> </td>
-        </tr>
-    </tbody>
-</table>
+<body>
+    <div class="container">
+        <br>
+        <h3 style="text-align: left;">Izabrani format: {{ format.format }}</h3>
+        <h4 style="text-align: left;"> Sada birate autora:</h4>
+        <br>
+    </div>
+    <div class="container">
+        <input type="search" [(ngModel)]="searchText" placeholder="Pretraga">
+        <br>
+    </div>
+    <div class="container">
+        <br>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let autor of autors | filter: searchText">
+                    <td> {{ autor.ime }}</td>
+                    <td> {{ autor. prezime }} </td>
+                    <td> <button [routerLink]="['new-book/' + autor.autorID]" class="btn btn-warning">Odaberi
+                            autora</button> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>

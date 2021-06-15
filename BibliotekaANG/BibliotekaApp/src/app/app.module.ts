@@ -27,6 +27,7 @@ import { UpdateInfoComponent } from './components/update-info/update-info.compon
 import { AllLendsComponent } from './components/all-lends/all-lends.component';
 import { BooksByFormatComponent } from './components/books-by-format/books-by-format.component';
 import { ChooseDateComponent } from './components/choose-date/choose-date.component';
+import { BooksByCategoryComponent } from './components/books-by-category/books-by-category.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ChooseDateComponent } from './components/choose-date/choose-date.compon
     AllLendsComponent,
     BooksByFormatComponent,
     ChooseDateComponent,
+    BooksByCategoryComponent,
   ],
   imports: [
     BrowserModule,

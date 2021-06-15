@@ -27,7 +27,7 @@ export class AllLendsComponent implements OnInit {
 
   displayDate = false;
   odaberiDatum(pozajmicaID: number) {
-    this.displayDate = !this.displayDate;
+    this.displayDate = true;
     sessionStorage.setItem("pozajmicaID", String(pozajmicaID));
   }
 

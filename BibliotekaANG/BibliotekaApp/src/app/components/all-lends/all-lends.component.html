@@ -1,27 +1,40 @@
 <app-header></app-header>
 
-<h1>Pozajmice</h1>
+<body>
+    <br>
 
-<input type="search" [(ngModel)]="searchText" placeholder="Search text">
+    <h1>Pozajmice</h1>
+    <div class="container">
+        <br>
+        <input type="search" [(ngModel)]="searchText" placeholder="Pretraga">
+        <br><br>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-10">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th> Datum preuzimanja </th>
+                            <th> Knjiga </th>
+                            <th> Clan </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pozajmica of pozajmice | filter: searchText">
+                            <td> {{ pozajmica.datumPreuzimanja }} </td>
+                            <td> {{ pozajmica.knjiga.naslov }} </td>
+                            <td> {{ pozajmica.korisnik.brClanskeKarte }} </td>
+                            <td> <button (click)="odaberiDatum(pozajmica.pozajmicaID)" class="btn btn-warning">Datum
+                                    vracanja</button> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-<table>
-    <thead>
-        <tr>
-            <th> Datum preuzimanja </th>
-            <th> Knjiga </th>
-            <th> Clan </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let pozajmica of pozajmice | filter: searchText">
-            <td> {{ pozajmica.datumPreuzimanja }} </td>
-            <td> {{ pozajmica.knjiga.naslov }} </td>
-            <td> {{ pozajmica.korisnik.brClanskeKarte }} </td>
-            <td> <button (click)="odaberiDatum(pozajmica.pozajmicaID)">Datum vracanja</button> </td>
-        </tr>
-    </tbody>
-</table>
-
-<div *ngIf="displayDate" style="text-align:right" >
-    <app-choose-date></app-choose-date>
-</div>
+            <div *ngIf="displayDate" class="col-2" style="text-align:right">
+                <app-choose-date></app-choose-date>
+            </div>
+        </div>
+    </div>
+</body>

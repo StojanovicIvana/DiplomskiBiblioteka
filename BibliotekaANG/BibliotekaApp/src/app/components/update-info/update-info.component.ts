@@ -22,8 +22,7 @@ export class UpdateInfoComponent implements OnInit {
     this.libraryService.updateInfo(korisnikID, this.korisnik).subscribe(data => {
       console.log(data);
       window.location.reload();
-    });
-    
+    });    
   }
 
 }
